@@ -5,4 +5,4 @@ runs:
   image: "Dockerfile"
 inputs:
   API_URL:
-    required: true
+    required: false
