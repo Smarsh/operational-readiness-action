@@ -9,7 +9,7 @@ RUN wget https://github.com/mikefarah/yq/releases/download/3.2.1/yq_linux_amd64 
 
 COPY build_markdown.sh /build_markdown.sh
 
-COPY tash.sh /task.sh
+COPY task.sh /task.sh
 
 COPY operational-readiness-template.yml .
 
