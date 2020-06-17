@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 if [[ -d operational-readiness/ ]]; then
     cd operational-readiness/
@@ -13,3 +13,10 @@ else
     cd operational-readiness
     ./../../../build_markdown.sh
 fi
+
+json_data=`yq r -j operational-readiness.yml`
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data "${json_data}" \
+  $API_URL/api/v1/orm

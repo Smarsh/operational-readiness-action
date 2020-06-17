@@ -1,0 +1,8 @@
+name: Update Operational Readiness
+description: "Automatically update operational-readiness.md and push data to web app"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  API_URL:
+    required: true
