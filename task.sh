@@ -9,6 +9,7 @@ if [[ -d operational-readiness/ ]]; then
 else
     echo "Creating operational-readiness directory and contents"
     mkdir operational-readiness/
+    ls -l
     cp operational-readiness-template.yml operational-readiness/operational-readiness.yml
     cd operational-readiness
     ./../build_markdown.sh
