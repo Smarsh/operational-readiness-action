@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 if [[ -d operational-readiness/ ]]; then
     cd operational-readiness/
