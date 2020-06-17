@@ -25,7 +25,7 @@ function readYaml {
 
 #<----------------- Source Control ----------------->
 
-readYaml "orm.yml" "sourceControl" 
+readYaml "operational-readiness.yml" "sourceControl" 
 
 source_control="### SourceControl\n
 |Practice|Status|URL (if applicable)|\n
@@ -40,7 +40,7 @@ echo -e $source_control >> operational-readiness.md
 
 #<----------------- Security Checks ----------------->
 
-readYaml "orm.yml" "securityChecks"
+readYaml "operational-readiness.yml" "securityChecks"
 
 security_checks="### SecurityChecks\n
 |Practice|Status|URL (if applicable)\n
@@ -53,7 +53,7 @@ echo -e $security_checks >> operational-readiness.md
 
 #<----------------- CICD ----------------->
 
-readYaml "orm.yml" "cicd"
+readYaml "operational-readiness.yml" "cicd"
 
 cicd="### CICD\n
 |Practice|Status|URL (if applicable)\n
@@ -67,7 +67,7 @@ echo -e $cicd >> operational-readiness.md
 
 #<----------------- PaaS Services ----------------->
 
-readYaml "orm.yml" "paasServices"
+readYaml "operational-readiness.yml" "paasServices"
 
 paas_services="### PaasServices\n
 |Practice|Status|URL (if applicable)\n
