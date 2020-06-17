@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ operational-readiness/ ]]; then
+if [[ -d operational-readiness/ ]]; then
     cd operational-readiness/
     echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
     yq merge ../operational-readiness-template.yml operational-readiness.yml
