@@ -1,0 +1,63 @@
+product:
+name:
+repo:
+
+operational-readiness-subjects:
+  sourceControl:
+    readme:
+      exists:
+      urls:
+    contributing:
+      exists:
+      urls:
+    app_architecture_diagram:
+      exists:
+      urls:
+    master_branch_mgmt:
+      exists:
+      urls:
+  securityChecks:
+    sonar:
+      exists:
+      urls:
+    snyk:
+      exists:
+      urls:
+  cicd:
+    artifact_repository:
+      exists:
+      urls:
+    version_mgmt:
+      exists:
+      urls:
+    pipeline_configs:
+      exists:
+      urls:
+    slack_alerts:
+      exists:
+      urls:
+  paasServices:
+    queue:
+      exists:
+      urls:
+    object_store:
+      exists:
+      urls:
+    relational_databases:
+      exists:
+      urls:
+    instrumentation:
+      exists:
+      urls:
+    secret_storage:
+      exists:
+      urls:
+    logging:
+      exists:
+      urls:
+    observability:
+      exists:
+      urls:
+    monitoring:
+      exists:
+      urls:
