@@ -12,8 +12,8 @@ function readYaml {
       if [[ `yq r $1 $path.urls` ]]; then
         urls=`yq r $1 $path.urls | sed 's/-//g' | sed 's/^[[:space:]]*//g'`
         arr=()
-        for URLs in $urls; do
-            arr+=("$URLs")
+        for url in $urls; do
+            arr+=("$url")
         done
         test="${arr[@]}"
         export "$subject"_urls="$test"
