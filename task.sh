@@ -22,4 +22,4 @@ curl --header "Content-Type: application/json" \
   --request POST \
   --data "${json_data}" \
   --header "X-API-KEY ${API_KEY}" \
-  https://operational-readiness.apps.prod.smarsh.cloud/api/v1/orm
+  https://operational-readiness.apps.prod.smarsh.cloud/api/v1/repos
