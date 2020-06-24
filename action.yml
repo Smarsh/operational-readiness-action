@@ -4,5 +4,5 @@ runs:
   using: "docker"
   image: "Dockerfile"
 inputs:
-  API_URL:
-    required: false
+  API_KEY:
+    required: true
