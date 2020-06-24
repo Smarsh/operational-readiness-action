@@ -28,7 +28,7 @@ function readYaml {
 readYaml "operational-readiness.yml" "sourceControl" 
 
 source_control="### SourceControl\n
-|Practice|Status|URL (if applicable)|\n
+|Commitment|Exists|URLs (if applicable)|\n
 |:---|:---:|:---:|\n
 |Readme|":$readme:"|${readme_urls[@]}""|\n
 |Contributing|":$contributing:"|${contributing_urls[@]}|\n
@@ -43,7 +43,7 @@ echo -e $source_control >> operational-readiness.md
 readYaml "operational-readiness.yml" "securityChecks"
 
 security_checks="### SecurityChecks\n
-|Practice|Status|URL (if applicable)\n
+|Commitment|Exists|URLs (if applicable)\n
 |:---|:---:|:---:|\n
 |Snyk|":$snyk:"|"${snyk_urls[@]}"|\n
 |Sonar|":$sonar:"|"${sonar_urls[@]}"|"
@@ -56,7 +56,7 @@ echo -e $security_checks >> operational-readiness.md
 readYaml "operational-readiness.yml" "cicd"
 
 cicd="### CICD\n
-|Practice|Status|URL (if applicable)\n
+|Commitment|Exists|URLs (if applicable)\n
 |:---|:---:|:---:|\n
 |Artifact Repository|":$artifact_repository:"|"${artifact_repository_urls[@]}"|\n
 |Version Management|":$version_mgmt:"|"${version_mgmt_urls[@]}"|\n
@@ -70,7 +70,7 @@ echo -e $cicd >> operational-readiness.md
 readYaml "operational-readiness.yml" "paasServices"
 
 paas_services="### PaasServices\n
-|Practice|Status|URL (if applicable)\n
+|Commitment|Exists|URLs (if applicable)\n
 |:---|:---:|:---:|\n
 |Queue|":$queue:"|"${queue_urls[@]}"|\n
 |Object Store|":$object_store:"|"${object_store_urls[@]}"|\n
