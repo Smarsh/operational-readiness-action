@@ -16,7 +16,7 @@ if [[ -d operational-readiness/ ]]; then
     or_markdown_sha=`curl --header "Authorization: token ${ACCESS_TOKEN}" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
 
-    curl -X PUT --header "Authorization: token ${ACCESS_TOKEN}" -d '{"message": "Updated operational-readiness.md via github action", "content": "'${updated_markdown_content}'", "sha":"'${or_markdown_sha}'"}' -H "Content-Type: application/json" \
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: token ${ACCESS_TOKEN}" -d "message=Updated operational-readiness.md via github action&content=${updated_markdown_content}&sha=${or_markdown_sha}" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md
 
 else
@@ -28,7 +28,7 @@ else
 
     updated_markdown_content=`base64 operational-readiness.md`
     
-    curl -X PUT --header "Authorization: token ${ACCESS_TOKEN}" -d '{"message": "Updated operational-readiness.md via github action", "content": "'${updated_markdown_content}'", "sha":"'${or_markdown_sha}'"}' -H "Content-Type: application/json" \
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: token ${ACCESS_TOKEN}" -d "message=Updated operational-readiness.md via github action&content=${updated_markdown_content}" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md 
 fi
 
