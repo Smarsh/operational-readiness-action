@@ -6,3 +6,7 @@ runs:
 inputs:
   API_KEY:
     required: true
+  GITHUB_REPO:
+    required: true
+  ACCESS_TOKEN:
+    required: true
