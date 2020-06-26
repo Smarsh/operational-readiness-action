@@ -20,9 +20,12 @@ if [[ -d operational-readiness/ ]]; then
     
     postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\",\"sha\":\"$or_markdown_sha\"}"
 
-    curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" \
-    -d "$postDataJson" \
-    https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md
+    http PUT https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
+    "Authorization: token ${ACCESS_TOKEN}" \
+    "Content-Type: application/json" \
+    message="Updated operational-readiness.md via github action" \
+    content="$updated_markdown_content" \
+    sha="$or_markdown_sha"
 
 else
     echo "Creating operational-readiness directory and contents"
@@ -34,8 +37,11 @@ else
     postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\"}"
 
     updated_markdown_content=`base64 operational-readiness.md`
-    curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" -d "$postDataJson" \
-    https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md 
+    http PUT -H https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
+    "Authorization: token ${ACCESS_TOKEN}" \
+    "Content-Type: application/json" \
+    message="Updated operational-readiness.md via github action" \
+    content="$updated_markdown_content" 
 fi
 
 json_data=`yq r -j operational-readiness.yml`
