@@ -18,7 +18,7 @@ if [[ -d operational-readiness/ ]]; then
     or_markdown_sha=`curl -H "Authorization: token ${ACCESS_TOKEN}" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
 
-    echo "$updated_markdown_content"
+    echo '"'$updated_markdown_content'"'
 
     or_markdown_sha=`curl --header "Authorization: token ${ACCESS_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
 
@@ -29,7 +29,7 @@ if [[ -d operational-readiness/ ]]; then
     "Content-Type: application/json" \
     message="Updated operational-readiness.md via github action" \
     content="$updated_markdown_content" \
-    sha="$or_markdown_sha"
+    sha='"'$or_markdown_sha'"'
 
 else
     echo "Creating operational-readiness directory and contents"
