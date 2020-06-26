@@ -21,7 +21,7 @@ if [[ -d operational-readiness/ ]]; then
     postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\",\"sha\":\"$or_markdown_sha\"}"
 
     curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" \
-    -d $postDataJson \
+    -d "$postDataJson" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md
 
 else
@@ -34,7 +34,7 @@ else
     postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\"}"
 
     updated_markdown_content=`base64 operational-readiness.md`
-    curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" -d $postDataJson \
+    curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" -d "$postDataJson" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md 
 fi
 
