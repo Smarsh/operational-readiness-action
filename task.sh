@@ -18,7 +18,7 @@ if [[ -d operational-readiness/ ]]; then
 
     or_markdown_sha=`curl --header "Authorization: token ${ACCESS_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
     
-    postDataJson="{\"messafe\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\",\"sha\":\"$or_markdown_sha\"}"
+    postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\",\"sha\":\"$or_markdown_sha\"}"
 
     curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" \
     -d $postDataJson \
@@ -31,7 +31,7 @@ else
     cd operational-readiness
     ./../../../build_markdown.sh
 
-    postDataJson="{\"messafe\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\"}"
+    postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\"}"
 
     updated_markdown_content=`base64 operational-readiness.md`
     curl -X PUT -H "Authorization: token ${ACCESS_TOKEN}" -H "Content-Type: application/json" -d $postDataJson \
