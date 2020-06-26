@@ -11,14 +11,18 @@ if [[ -d operational-readiness/ ]]; then
     mv temp.yml operational-readiness.yml
     rm operational-readiness.md
     ./../../../build_markdown.sh
+
+    echo "$GITHUB_REPO"
     
     updated_markdown_content=`base64 operational-readiness.md`
     or_markdown_sha=`curl -H "Authorization: token ${ACCESS_TOKEN}" \
     https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
 
+    echo "$updated_markdown_content"
+
     or_markdown_sha=`curl --header "Authorization: token ${ACCESS_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md  | jq -r .sha`
-    
-    postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\",\"sha\":\"$or_markdown_sha\"}"
+
+    echo "$or_markdown_sha"
 
     http PUT https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
     "Authorization: token ${ACCESS_TOKEN}" \
@@ -33,8 +37,6 @@ else
     cp ../../operational-readiness-template.yml operational-readiness/operational-readiness.yml
     cd operational-readiness
     ./../../../build_markdown.sh
-
-    postDataJson="{\"message\":\"Updated operational-readiness.md via github action\",\"content\":\"$updated_markdown_content\"}"
 
     updated_markdown_content=`base64 operational-readiness.md`
     http PUT -H https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
