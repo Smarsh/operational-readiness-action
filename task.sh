@@ -38,11 +38,3 @@ curl --header "Content-Type: application/json" \
   --data "${json_data}" \
   --header "X-API-KEY ${API_KEY}" \
   https://operational-readiness.apps.prod.smarsh.cloud/api/v1/orm
-
-
-
-  
-          
-          
-          
-           
