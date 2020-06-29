@@ -24,7 +24,7 @@ if [[ -d operational-readiness/ ]]; then
 
     echo "$or_markdown_sha"
 
-    http PUT https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
+    http --ignore-stdin PUT https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
     "Authorization: token ${ACCESS_TOKEN}" \
     "Content-Type: application/json" \
     message="Updated operational-readiness.md via github action" \
@@ -39,7 +39,7 @@ else
     ./../../../build_markdown.sh
 
     updated_markdown_content=`base64 operational-readiness.md`
-    http PUT -H https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
+    http --ignore-stdin PUT -H https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
     "Authorization: token ${ACCESS_TOKEN}" \
     "Content-Type: application/json" \
     message="Updated operational-readiness.md via github action" \
