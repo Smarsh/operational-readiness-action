@@ -40,10 +40,23 @@ else
     content="$updated_markdown_content" 
 fi
 
-json_data=`yq r -j operational-readiness.yml`
+array=()
 
-curl --header "Content-Type: application/json" \
-  --request POST \
-  --data "${json_data}" \
-  --header "authorization: X-API-KEY ${API_KEY}" \
-  https://operational-readiness.apps.prod.smarsh.cloud/api/v1/repos
+while IFS= read -r line; do
+    array+=("$line")
+done < ../../../products.yml
+
+product=`yq r operational-readiness.yml product`
+
+if [[ " ${array[@]} " =~ " ${product} " ]]; then
+    json_data=`yq r -j operational-readiness.yml`
+
+    curl --header "Content-Type: application/json" \
+    --request POST \
+    --data "${json_data}" \
+    --header "authorization: X-API-KEY ${API_KEY}" \
+    https://operational-readiness.apps.prod.smarsh.cloud/api/v1/repos
+else
+    echo "Please update the product name in operational-readiness.yml to match ${array[@]}"
+    exit 1
+fi
