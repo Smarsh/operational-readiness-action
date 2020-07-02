@@ -5,7 +5,7 @@ git config --local user.name "smarsh-concourse-ci"
 
 echo $GITHUB_EVENT
 
-if [[ "${GITHUB_EVENT}" == "pull_request" ]]; then
+if [[ "${GITHUB_EVENT}" == "push" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
         echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
@@ -59,6 +59,23 @@ if [[ "${GITHUB_EVENT}" == "pull_request" ]]; then
         --data "${json_data}" \
         --header "authorization: X-API-KEY ${API_KEY}" \
         https://operational-readiness.apps.prod.smarsh.cloud/api/v1/repos
+    else
+        RED='\033[0;31m'
+        NC='\033[0m'
+        echo -e "\n${RED}Please update the product name in operational-readiness.yml to match ${array[@]}${NC}\n\n"
+        exit 1
+    fi
+else
+    array=()
+
+    while IFS= read -r line; do
+        array+=("$line")
+    done < ../../products.yml
+
+    product=`yq r operational-readiness.yml product`
+
+    if [[ " ${array[@]} " =~ " ${product} " ]]; then
+        exit 0
     else
         RED='\033[0;31m'
         NC='\033[0m'
