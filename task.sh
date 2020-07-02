@@ -3,8 +3,6 @@
 git config --local user.email "devops@smarsh.com"
 git config --local user.name "smarsh-concourse-ci"
 
-echo $GITHUB_EVENT
-
 if [[ "${GITHUB_EVENT}" == "push" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
@@ -79,7 +77,10 @@ else
     else
         RED='\033[0;31m'
         NC='\033[0m'
-        echo -e "\n${RED}Please update the product name in operational-readiness.yml to match ${array[@]}${NC}\n\n"
+        echo -e "\n${RED}Please update the product name in operational-readiness.yml to match:${NC}\n"
+        for product in "${array[@]}"; do
+            echo "${product}"
+        done
         exit 1
     fi
 fi
