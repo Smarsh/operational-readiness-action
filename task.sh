@@ -5,7 +5,7 @@ git config --local user.name "smarsh-concourse-ci"
 
 echo $github
 
-if [[ "${github.event}" == "pull_request" ]]
+if [[ "${github.event}" == "pull_request" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
         echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
