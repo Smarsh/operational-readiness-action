@@ -6,11 +6,11 @@ git config --local user.name "smarsh-concourse-ci"
 if [[ -d operational-readiness/ ]]; then
     cd operational-readiness/
     echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
-    yq merge ../operational-readiness-template.yml operational-readiness.yml >> temp.yml
+    yq merge ../../../operational-readiness-template.yml operational-readiness.yml >> temp.yml
     rm operational-readiness.yml
     mv temp.yml operational-readiness.yml
     rm operational-readiness.md
-    ./build_markdown.sh
+    ./../../../build_markdown.sh
     
     updated_markdown_content=`base64 operational-readiness.md`
     or_markdown_sha=`curl -H "Authorization: token ${ACCESS_TOKEN}" \
@@ -28,9 +28,9 @@ if [[ -d operational-readiness/ ]]; then
 else
     echo "Creating operational-readiness directory and contents"
     mkdir operational-readiness/
-    cp operational-readiness-template.yml operational-readiness/operational-readiness.yml
+    cp ../../operational-readiness-template.yml operational-readiness/operational-readiness.yml
     cd operational-readiness
-    ./build_markdown.sh
+    ./../../../build_markdown.sh
 
     updated_markdown_content=`base64 operational-readiness.md`
     http --print=h --ignore-stdin PUT -H https://api.github.com/repos/${GITHUB_REPO}/contents/operational-readiness/operational-readiness.md \
@@ -59,6 +59,6 @@ if [[ " ${array[@]} " =~ " ${product} " ]]; then
 else
     RED='\033[0;31m'
     NC='\033[0m'
-    echo -e "\n${RED}Please update the product name in operational-readiness.yml to match ${array[@]}${NC}"
+    echo -e "\n${RED}Please update the product name in operational-readiness.yml to match ${array[@]}${NC}\n\n"
     exit 1
 fi
