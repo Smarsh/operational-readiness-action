@@ -3,9 +3,9 @@
 git config --local user.email "devops@smarsh.com"
 git config --local user.name "smarsh-concourse-ci"
 
-echo $github
+echo $GITHUB_EVENT
 
-if [[ "${github.event}" == "pull_request" ]]; then
+if [[ "${GITHUB_EVENT}" == "pull_request" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
         echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
