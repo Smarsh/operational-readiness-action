@@ -72,7 +72,7 @@ else
         array+=("$line")
     done < ../../products.yml
 
-    product=`yq r operational-readiness.yml product`
+    product=`yq r operational-readiness/operational-readiness.yml product`
 
     if [[ " ${array[@]} " =~ " ${product} " ]]; then
         exit 0
