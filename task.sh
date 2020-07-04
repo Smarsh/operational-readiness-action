@@ -3,7 +3,7 @@
 git config --local user.email "devops@smarsh.com"
 git config --local user.name "smarsh-concourse-ci"
 
-if [[ "${GITHUB_EVENT}" == "push" ]]; then
+if [[ "${GITHUB_EVENT}" == "push" ]] || [[ "${GITHUB_EVENT}" == "schedule"]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
         echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
@@ -24,7 +24,8 @@ if [[ "${GITHUB_EVENT}" == "push" ]]; then
         "Content-Type: application/json" \
         message="Updated operational-readiness.md via github action" \
         content="$updated_markdown_content" \
-        sha="$or_markdown_sha"
+        sha="$or_markdown_sha" \
+        branch="${BRANCH}"
 
     else
         echo "Creating operational-readiness directory and contents"
@@ -39,6 +40,7 @@ if [[ "${GITHUB_EVENT}" == "push" ]]; then
         "Content-Type: application/json" \
         message="Updated operational-readiness.md via github action" \
         content="$updated_markdown_content" 
+        branch="master"${BRANCH}
     fi
 
     array=()
