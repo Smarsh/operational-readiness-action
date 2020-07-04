@@ -10,3 +10,6 @@ inputs:
     required: true
   ACCESS_TOKEN:
     required: true
+  BRANCH:
+    required: true
+

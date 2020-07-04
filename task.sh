@@ -24,7 +24,8 @@ if [[ "${GITHUB_EVENT}" == "push" ]]; then
         "Content-Type: application/json" \
         message="Updated operational-readiness.md via github action" \
         content="$updated_markdown_content" \
-        sha="$or_markdown_sha"
+        sha="$or_markdown_sha" \
+        branch="${BRANCH}"
 
     else
         echo "Creating operational-readiness directory and contents"
@@ -39,6 +40,7 @@ if [[ "${GITHUB_EVENT}" == "push" ]]; then
         "Content-Type: application/json" \
         message="Updated operational-readiness.md via github action" \
         content="$updated_markdown_content" 
+        branch="master"${BRANCH}
     fi
 
     array=()
