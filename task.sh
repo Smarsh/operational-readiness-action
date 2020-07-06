@@ -3,7 +3,7 @@
 git config --local user.email "devops@smarsh.com"
 git config --local user.name "smarsh-concourse-ci"
 
-if [[ "${GITHUB_EVENT}" == "push" ]] || [[ "${GITHUB_EVENT}" == "schedule"]]; then
+if [[ "${GITHUB_EVENT}" == "push" ]] || [[ "${GITHUB_EVENT}" == "schedule" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
         echo "Updating operational-readiness.yml based on operational-readiness-template.yml"
