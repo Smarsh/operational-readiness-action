@@ -3,6 +3,8 @@
 git config --local user.email "devops@smarsh.com"
 git config --local user.name "smarsh-concourse-ci"
 
+echo "$GITHUB_EVENT"
+
 if [[ "${GITHUB_EVENT}" == "push" ]] || [[ "${GITHUB_EVENT}" == "schedule" ]]; then
     if [[ -d operational-readiness/ ]]; then
         cd operational-readiness/
